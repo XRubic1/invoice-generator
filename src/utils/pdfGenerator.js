@@ -1,5 +1,5 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
-import templatePdfUrl from '../assets/EmptyInvoice.pdf?url';
+import templatePdfBase64 from '../assets/templatePdfBase64.js';
 import {
   formatInvoiceDate,
   formatLineAmount,
@@ -20,19 +20,30 @@ const POSITIONS = {
   total: { x: 499.1, y: 89.7, size: 9 },
 };
 
+let cachedTemplateBytes = null;
+
+/**
+ * Decodes the embedded PDF template (no network request).
+ * @returns {Uint8Array}
+ */
+function getTemplateBytes() {
+  if (cachedTemplateBytes) return cachedTemplateBytes;
+  const binary = atob(templatePdfBase64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  cachedTemplateBytes = bytes;
+  return bytes;
+}
+
 /**
  * Fills the empty invoice PDF with form data and returns bytes for download.
  * @param {object} data - Invoice field values
  * @returns {Promise<Uint8Array>}
  */
 export async function generateInvoicePdf(data) {
-  const response = await fetch(templatePdfUrl);
-  if (!response.ok) {
-    throw new Error('Could not load invoice template.');
-  }
-
-  const templateBytes = await response.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(templateBytes);
+  const pdfDoc = await PDFDocument.load(getTemplateBytes());
   const page = pdfDoc.getPage(0);
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);

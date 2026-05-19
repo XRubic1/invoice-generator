@@ -23,7 +23,7 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install and build
+      - name: Install, embed template, and build
         run: npm ci && npm run build
         env:
           GITHUB_PAGES: 'true'
@@ -33,3 +33,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          enable_jekyll: false

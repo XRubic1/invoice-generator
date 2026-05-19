@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "embed-template": "node scripts/embed-template.mjs",
+    "dev": "npm run embed-template && vite",
+    "build": "npm run embed-template && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

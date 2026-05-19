@@ -7,7 +7,7 @@ Single-page React app to fill out the empty invoice PDF template and download a 
 ## Features
 
 - Carrier name, invoice #, date, debtor, address, load/PO, amount, and total
-- Downloads a filled PDF based on `public/EmptyInvoice.pdf`
+- Downloads a filled PDF (template embedded in the app — no separate file download)
 - Line amount: `$2.250,00` · Total: `$2,250.00`
 
 ## Local development
