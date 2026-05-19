@@ -2,8 +2,7 @@
 
 Single-page React app to fill out the empty invoice PDF template and download a completed invoice.
 
-**Live demo:** after deploying to GitHub Pages, open  
-`https://<your-username>.github.io/invoice-generator/`
+**Live demo:** https://xrubic1.github.io/invoice-generator/
 
 ## Features
 
@@ -34,7 +33,7 @@ git init
 git add .
 git commit -m "Initial commit: invoice generator SPA"
 git branch -M main
-git remote add origin https://github.com/<your-username>/invoice-generator.git
+git remote add origin https://github.com/XRubic1/invoice-generator.git
 git push -u origin main
 ```
 
