@@ -25,7 +25,8 @@ const POSITIONS = {
  * @returns {Promise<Uint8Array>}
  */
 export async function generateInvoicePdf(data) {
-  const response = await fetch('/EmptyInvoice.pdf');
+  const templateUrl = `${import.meta.env.BASE_URL}EmptyInvoice.pdf`;
+  const response = await fetch(templateUrl);
   if (!response.ok) {
     throw new Error('Could not load invoice template.');
   }
