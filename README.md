@@ -41,8 +41,8 @@ git push -u origin main
 
 1. Open [Settings → Pages](https://github.com/XRubic1/invoice-generator/settings/pages)
 2. Under **Build and deployment**, set **Source** to **Deploy from a branch**
-3. Set **Branch** to `gh-pages` and folder to `/ (root)`
+3. Set **Branch** to `main` and folder to **`/docs`**
 4. Click **Save**
-5. Re-run the failed workflow (Actions → Deploy to GitHub Pages → Re-run), or push any commit
+5. Wait for the **Deploy to GitHub Pages** workflow to finish on the [Actions](https://github.com/XRubic1/invoice-generator/actions) tab
 
-The workflow publishes the built app to the `gh-pages` branch. After the first successful run, the site is live at the URL above (may take 1–2 minutes).
+The workflow builds the app and commits the output to the `docs/` folder on `main`. The PDF template is embedded in the JavaScript bundle (no separate `EmptyInvoice.pdf` request).
