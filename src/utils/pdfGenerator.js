@@ -1,4 +1,5 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import templatePdfUrl from '../assets/EmptyInvoice.pdf?url';
 import {
   formatInvoiceDate,
   formatLineAmount,
@@ -25,8 +26,7 @@ const POSITIONS = {
  * @returns {Promise<Uint8Array>}
  */
 export async function generateInvoicePdf(data) {
-  const templateUrl = `${import.meta.env.BASE_URL}EmptyInvoice.pdf`;
-  const response = await fetch(templateUrl);
+  const response = await fetch(templatePdfUrl);
   if (!response.ok) {
     throw new Error('Could not load invoice template.');
   }
